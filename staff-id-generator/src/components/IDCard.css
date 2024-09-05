@@ -1,0 +1,72 @@
+/* src/components/IDCard.css */
+.id-card {
+  border: 1px solid #ccc;
+  width: 400px;
+  background-color: white;
+  font-family: Arial, sans-serif;
+  color: black;
+  text-align: left;
+  position: relative;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: blue;
+  padding: 10px;
+  color: white;
+}
+
+.left-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.logo {
+  width: 60px;
+  margin-bottom: 5px;
+}
+
+.company-name {
+  font-size: 16px;
+  margin: 0;
+}
+
+.right-section {
+  text-align: right;
+}
+
+.main-section {
+  display: flex;
+  padding: 10px;
+}
+
+.info {
+  width: 60%;
+  padding-right: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.photo-section {
+  width: 40%;
+  text-align: center;
+}
+
+.staff-photo {
+  width: 100px;
+  height: 120px;
+  border: 2px solid #000;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.footer {
+  background-color: blue;
+  color: white;
+  padding: 10px;
+  font-size: 12px;
+  text-align: center;
+}

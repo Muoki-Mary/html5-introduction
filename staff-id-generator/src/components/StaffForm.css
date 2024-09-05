@@ -1,0 +1,24 @@
+/* src/components/StaffForm.css */
+.button-container {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px; /* Space between buttons */
+}
+
+.button-container button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  color: white;
+  background-color: #333; /* Default background color */
+}
+
+.button-container .print {
+  background-color: #4caf50; /* Green */
+}
+
+.button-container .download {
+  background-color: #008cba; /* Blue */
+}
