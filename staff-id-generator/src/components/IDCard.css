@@ -1,72 +1,79 @@
-/* src/components/IDCard.css */
 .id-card {
-  border: 1px solid #ccc;
-  width: 400px;
-  background-color: white;
-  font-family: Arial, sans-serif;
-  color: black;
-  text-align: left;
-  position: relative;
+  width: 500px; /* Ensure the ID card and form have the same width */
+  border: 2px solid #000;
+  border-radius: 8px;
+  padding: 10px;
+  margin: 20px auto;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-.header {
+.top-section {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: blue;
-  padding: 10px;
-  color: white;
 }
 
-.left-section {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+.institution-logo {
+  width: 80px;
 }
 
-.logo {
-  width: 60px;
-  margin-bottom: 5px;
-}
-
-.company-name {
-  font-size: 16px;
+.card-title {
+  font-size: 18px;
   margin: 0;
+  padding-left: 10px;
 }
 
-.right-section {
-  text-align: right;
-}
-
-.main-section {
+.middle-section {
   display: flex;
-  padding: 10px;
-}
-
-.info {
-  width: 60%;
-  padding-right: 10px;
-  font-size: 14px;
-  line-height: 1.5;
+  justify-content: space-between;
+  margin-top: 10px;
 }
 
 .photo-section {
-  width: 40%;
-  text-align: center;
+  width: 100px;
+  height: 130px;
+  overflow: hidden;
+  margin-right: 10px;
 }
 
 .staff-photo {
-  width: 100px;
-  height: 120px;
-  border: 2px solid #000;
-  border-radius: 5px;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
 }
 
+.info-section {
+  flex: 1;
+  font-size: 14px;
+}
+
 .footer {
-  background-color: blue;
-  color: white;
-  padding: 10px;
-  font-size: 12px;
   text-align: center;
+  padding: 10px;
+  background-color: #f5f5f5;
+  border-top: 1px solid #ddd;
+  margin-top: 10px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.footer-details {
+  background-color: hsla(130, 76%, 49%, 0.725);
+  padding: 20px;
+  text-align: center;
+  border-top: 1px solid #dee2e6;
+  color: #495057;
+  font-family: Arial, sans-serif;
+}
+
+.footer-details p {
+  margin: 5px 0;
 }

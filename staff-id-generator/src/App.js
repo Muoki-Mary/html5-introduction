@@ -5,20 +5,21 @@ import IDCard from "./components/IDCard";
 import "./App.css";
 
 const App = () => {
-  const [staff, setStaff] = useState(null);
-
-  const handleFormSubmit = (staffData) => {
-    setStaff(staffData);
-  };
+  // Initialize the state for the staff object
+  const [staff, setStaff] = useState({
+    firstName: "",
+    middleName: "",
+    lastName: "",
+    department: "",
+    mobileNumber: "",
+    photo: null,
+  });
 
   return (
     <div className="app-container">
-      <div className="form-container">
-        <StaffForm onSubmit={handleFormSubmit} />
-      </div>
-      <div className="id-card-container">
-        {staff && <IDCard staff={staff} />}
-      </div>
+      {/* Pass the staff and setStaff as props */}
+      <StaffForm staff={staff} setStaff={setStaff} />
+      <IDCard staff={staff} />
     </div>
   );
 };

@@ -1,97 +1,59 @@
 // src/components/StaffForm.js
-import React, { useState } from "react";
-import html2canvas from "html2canvas";
-import "./StaffForm.css"; // Ensure this import is present
+import React from "react";
+import "./StaffForm.css";
 
-const StaffForm = ({ onSubmit }) => {
-  const [staff, setStaff] = useState({
-    firstName: "",
-    lastName: "",
-    middleName: "",
-    department: "",
-    mobileNumber: "",
-    photo: null,
-  });
-
+const StaffForm = ({ staff, setStaff }) => {
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setStaff((prevStaff) => ({ ...prevStaff, [name]: value }));
-  };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    setStaff((prevStaff) => ({ ...prevStaff, photo: file }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSubmit(staff);
-  };
-
-  const printIDCard = () => {
-    window.print();
-  };
-
-  const downloadIDCard = () => {
-    const idCard = document.getElementById("id-card");
-    html2canvas(idCard).then((canvas) => {
-      const link = document.createElement("a");
-      link.href = canvas.toDataURL("image/png");
-      link.download = "staff-id-card.png";
-      link.click();
-    });
+    const { name, value, files } = e.target;
+    setStaff((prev) => ({
+      ...prev,
+      [name]: files ? files[0] : value,
+    }));
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="firstName"
-          placeholder="First Name"
-          value={staff.firstName}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="lastName"
-          placeholder="Last Name"
-          value={staff.lastName}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="middleName"
-          placeholder="Middle Name"
-          value={staff.middleName}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="department"
-          placeholder="Department"
-          value={staff.department}
-          onChange={handleChange}
-        />
-        <input
-          type="text"
-          name="mobileNumber"
-          placeholder="Mobile Number"
-          value={staff.mobileNumber}
-          onChange={handleChange}
-        />
-        <input type="file" accept="image/*" onChange={handleFileChange} />
-        <button type="submit">Generate ID</button>
-      </form>
-
-      <div className="button-container">
-        <button className="print" onClick={printIDCard}>
-          Print ID Card
-        </button>
-        <button className="download" onClick={downloadIDCard}>
-          Download ID Card
-        </button>
-      </div>
+    <div className="staff-form">
+      <input
+        type="text"
+        name="firstName"
+        value={staff.firstName}
+        onChange={handleChange}
+        placeholder="First Name"
+      />
+      <input
+        type="text"
+        name="middleName"
+        value={staff.middleName}
+        onChange={handleChange}
+        placeholder="Middle Name"
+      />
+      <input
+        type="text"
+        name="lastName"
+        value={staff.lastName}
+        onChange={handleChange}
+        placeholder="Last Name"
+      />
+      <input
+        type="text"
+        name="department"
+        value={staff.department}
+        onChange={handleChange}
+        placeholder="Department"
+      />
+      <input
+        type="text"
+        name="mobileNumber"
+        value={staff.mobileNumber}
+        onChange={handleChange}
+        placeholder="Mobile Number"
+      />
+      <input
+        type="file"
+        name="photo"
+        onChange={handleChange}
+        accept="image/*"
+      />
     </div>
   );
 };
