@@ -32,7 +32,7 @@ class RequestHandler(BaseHTTPRequestHandler):
             accounts[account_id] = balance
             self._send_response(201, {"message": f"Account {account_id} created successfully", "balance": balance})
 
-def run():
+def run(): 
     """Run the HTTP server."""
     server_address = ('', 8000)
     httpd = HTTPServer(server_address, "")
