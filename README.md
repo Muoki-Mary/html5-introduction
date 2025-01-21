@@ -1,3 +1,39 @@
+# API MONEY TRANSFER
+
+This project is a simple API for transferring money between accounts, built using Python.
+
+## Features
+
+- Transfer money between accounts securely.
+- Validate account details before processing transactions.
+- Track transaction history.
+- Support for basic authentication.
+- Error handling for insufficient funds and invalid accounts.
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/Muoki-Mary/api-money-transfer.git
+```
+
+Go to the project directory
+
+```bash
+  cd api-money-transfer
+```
+
+Start the server
+
+```bash
+  python bank_server.py
+```
+
+## Tech Stack
+
+**Server:** Python
+
 ## Contributing
 
 Contributions are always welcome!
