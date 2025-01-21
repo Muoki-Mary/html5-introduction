@@ -1,4 +1,6 @@
-from http.server import HTTPServer
+import json 
+from http.server import   BaseHTTPRequestHandler,HTTPServer
+
 accounts = {}
 
 class RequestHandler(BaseHTTPRequestHandler):
@@ -13,7 +15,7 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_POST(self):
         """Handle POST requests."""
         if self.path == "/account":
-            # Create an account
+            
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
             data = json.loads(post_data)
@@ -31,8 +33,8 @@ class RequestHandler(BaseHTTPRequestHandler):
 
             accounts[account_id] = balance
             self._send_response(201, {"message": f"Account {account_id} created successfully", "balance": balance})
-elif self.path == "/transfer":
-            # Transfer money
+        if self.path == "/transfer":
+           
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
             data = json.loads(post_data)
@@ -53,7 +55,7 @@ elif self.path == "/transfer":
                 self._send_response(400, {"error": "Insufficient funds in the from_account"})
                 return
 
-            # Perform transfer
+           
             accounts[from_account] -= amount
             accounts[to_account] += amount
 
@@ -63,7 +65,7 @@ elif self.path == "/transfer":
                 "to_account_balance": accounts[to_account]
             })
 
-   def do_GET(self):
+    def do_GET(self):
         """Handle GET requests."""
         if self.path.startswith("/account/"):
             # Get account details
