@@ -30,6 +30,10 @@ class RequestHandler(BaseHTTPRequestHandler):
             if account_id in accounts:
                 self._send_response(400, {"error": "Account already exists"})
                 return
+            
+            if not balance or not isinstance(balance, (int, float)):
+                self._send_response(400, {"error": "Balance must be a valid number"})
+                return
 
             accounts[account_id] = balance
             self._send_response(201, {"message": f"Account {account_id} created successfully", "balance": balance})
@@ -68,7 +72,7 @@ class RequestHandler(BaseHTTPRequestHandler):
     def do_GET(self):
         """Handle GET requests."""
         if self.path.startswith("/account/"):
-            # Get account details
+           
             account_id = self.path.split("/")[-1]
 
             if account_id not in accounts:
@@ -80,7 +84,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 def run(): 
     """Run the HTTP server."""
     server_address = ('', 8000)
-    httpd = HTTPServer(server_address, "")
+    httpd = HTTPServer(server_address,RequestHandler)
     print("Server running on http://localhost:8000")
     httpd.serve_forever()
 
