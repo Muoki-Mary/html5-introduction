@@ -14,6 +14,7 @@ class RequestHandler(BaseHTTPRequestHandler):
 
     def do_POST(self):
         """Handle POST requests."""
+        print("POST request received")
         if self.path == "/account":
             
             content_length = int(self.headers['Content-Length'])
@@ -37,8 +38,9 @@ class RequestHandler(BaseHTTPRequestHandler):
 
             accounts[account_id] = balance
             self._send_response(201, {"message": f"Account {account_id} created successfully", "balance": balance})
-        if self.path == "/transfer":
-           
+            
+        elif self.path == "/transfer":
+               
             content_length = int(self.headers['Content-Length'])
             post_data = self.rfile.read(content_length)
             data = json.loads(post_data)
@@ -51,14 +53,23 @@ class RequestHandler(BaseHTTPRequestHandler):
                 self._send_response(400, {"error": "from_account, to_account, and amount are required"})
                 return
 
+            if not isinstance(amount, (int, float)) or amount <= 0:
+                self._send_response(400, {"error": "Transfer amount must be a positive"})
+                return
+            
             if from_account not in accounts or to_account not in accounts:
-                self._send_response(404, {"error": "One or both accounts do not exist"})
+                self._send_response(400, {"error": "One or both accounts do not exist"})
                 return
 
             if accounts[from_account] < amount:
                 self._send_response(400, {"error": "Insufficient funds in the from_account"})
                 return
-
+  
+            if from_account == to_account:
+                self._send_response(400, {"error": "Cannot transfer to the same account"})
+                return
+ 
+ 
            
             accounts[from_account] -= amount
             accounts[to_account] += amount
@@ -68,7 +79,7 @@ class RequestHandler(BaseHTTPRequestHandler):
                 "from_account_balance": accounts[from_account],
                 "to_account_balance": accounts[to_account]
             })
-
+            
     def do_GET(self):
         """Handle GET requests."""
         if self.path.startswith("/account/"):
