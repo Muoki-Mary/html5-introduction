@@ -6,8 +6,6 @@ This project is a simple API for transferring money between accounts, built usin
 
 - Transfer money between accounts securely.
 - Validate account details before processing transactions.
-- Track transaction history.
-- Support for basic authentication.
 - Error handling for insufficient funds and invalid accounts.
 
 ## Run Locally
